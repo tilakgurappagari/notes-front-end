@@ -1,0 +1,61 @@
+<app-home-nav></app-home-nav>
+
+<div class="container-fluid containerWrapper">
+    <div class="row">
+        
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0 colWrapper-2" >
+            <div class="card bg-light">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center">We Keep your Notes safe</h4>
+                    <form [formGroup]="noteForm" name="loginForm" (ngSubmit)="onSubmit()" >
+                        
+                    
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fas fa-heading"></i> </span>
+                         </div>
+                         <input formControlName="title" name="title" type="text" class="form-control"
+                           placeholder="Title"   required  
+                         [ngClass]="{ 'is-invalid': submitted && f?.['title']?.errors }" />
+                         <div *ngIf="submitted && f?.['title'].errors" class="invalid-feedback">
+                             <div *ngIf="f?.['title']?.errors?.['required']">Title is required</div>
+                         </div>
+                        </div> <!-- form-group// -->
+                    
+                    
+                   
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fas fa-sticky-note"></i></span>
+                        </div>
+                        <textarea formControlName="body" name="body" type="text" class="form-control" 
+                        id="body" placeholder="Note" required [autocomplete]="false" 
+                        [ngClass]="{ 'is-invalid': submitted && f?.['body'].errors }" ></textarea>
+                                        <div *ngIf="submitted && f?.['body'].errors" class="invalid-feedback">
+                                            <div *ngIf="f?.['body'].errors?.['required']">OOPS!!! forgot something</div>
+                                            
+                                        </div>
+                    </div> <!-- form-group// --> 
+
+                    <div class="col-md-4">
+                        <p><span>
+                            <i class="fa-regular fa-heart" *ngIf="!important" (click)="fav()"></i>
+                            <i class="fa-solid fa-heart" *ngIf="important"  (click)="fav()" ></i>
+                            <!-- <i class="fa-solid fa-heart-circle-xmark"></i>
+                            <button *ngIf="!important"  class="btn btn-primary" (click)="fav()" >{{buttonValue}}</button>
+                            <button *ngIf="important"  class="btn btn-primary" (click)="fav()"  >{{buttonValue}}</button> -->
+                        </span></p>
+                    </div>
+                                                      
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block" data-testid="login-submit"> SAVE </button>
+                    </div> <!-- form-group// -->      
+                </form>
+                
+            
+                </article>
+                </div> 
+        </div>
+    </div>
+</div>
+

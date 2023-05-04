@@ -1,0 +1,45 @@
+<app-home-nav></app-home-nav>
+
+<div class="container-fluid containerWrapper">
+    <h4 >All Notes</h4>
+    <div class="row">
+        <div class="col-md-8">
+            <div *ngFor="let note of allNotes;let i=index " class="row" >
+                <div class="card" style="width: 800px ; margin:10px; height: 80px;">
+                    <div class="card-body">
+                        <div class="row" >
+                            <div class="col-md-8">
+                                <h5>Title: {{note.title}}</h5>
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <p><span>
+                                    <button *ngIf="!isSeeDetails"  class="btn btn-primary" (click)="seeDetails(i,note)" >{{buttonValue}}</button>
+                                    <button *ngIf="isSeeDetails" [disabled]="i!=enable" class="btn btn-primary" (click)="seeDetails(i,note)"  >{{buttonValue}}</button>
+                                </span></p>
+                            </div>
+                        </div>
+                       
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div *ngIf="isSeeDetails" class="col-md-4">
+            <div class="card" >
+                <div class="card-body">
+                    <div class="row" >
+                        <div class="col-md-12">
+                           <h6>Title:{{titleDetail}}</h6>
+                           <p>Body: {{bodyDetail}}</p>
+                           <p>Created On : {{createdOn|date: 'dd/MM/yyyy'}}</p>
+                        </div>
+                    </div>
+                   
+                </div>
+              </div>
+        </div>
+    
+       
+    </div>
+</div>
+

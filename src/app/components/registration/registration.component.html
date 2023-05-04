@@ -1,0 +1,77 @@
+
+
+<div class="container-fluid containerWrapper">
+    <div class="row">
+        <div class="col-lg-6 col-md-12 mb-4 mb-md-0 colWrapper-1" >
+            <h5 class="text-uppercase">Welcome to Notes</h5>
+    
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste atque ea quis
+              molestias. Fugiat pariatur maxime quis culpa corporis vitae repudiandae
+              aliquam voluptatem veniam, est atque cumque eum delectus sint!Fugiat pariatur maxime quis culpa corporis vitae repudiandae
+              aliquam voluptatem veniam, est atque cumque eum delectus sint!
+            </p>
+          </div>
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0 colWrapper-2" >
+            <div class="card bg-light">
+                <article class="card-body mx-auto" style="max-width: 400px;">
+                    <h4 class="card-title mt-3 text-center">Create Account</h4>
+                    <form [formGroup]="userForm" name="userForm" (ngSubmit)="onSubmit()" >
+                    
+                    <div class="form-group input-group ">
+                                <div class="input-group-prepend">
+                                    <span class=" input-group-text">
+                                         <i class="fa fa-user"></i>
+                                         </span>
+                                </div>
+            
+                                <input formControlName="username" name="username" type="text" 
+                                 class="form-control" id="firstName" placeholder="First Name"  required  
+                                [ngClass]="{ 'is-invalid': submitted && f?.['username'].errors }" />
+                                <div *ngIf="submitted && f?.['username'].errors" class="invalid-feedback">
+                                    <div *ngIf="f?.['username'].errors">User Name is required</div>
+                                </div>
+                    </div> <!-- form-group// -->
+                  
+                    
+                    
+                    
+                   
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input formControlName="password" name="password" type="password" class="form-control" data-testid="register-password"
+                        id="password" placeholder="Create Password" required [autocomplete]="false" 
+                        [ngClass]="{ 'is-invalid': submitted && f?.['password'].errors }" />
+                                        <div *ngIf="submitted && f?.['password'].errors " class="invalid-feedback">
+                                            <div *ngIf="f?.['password'].errors?.['required'] ">Password is required</div>
+                                            <div *ngIf="f?.['password'].errors?.['minlength']">Password must be at least 6 characters</div>
+                                        </div>
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input formControlName="confirmPassword" name="confirmPassword" type="password" class="form-control" data-testid="register-confirm-password"
+                         id="confirmPaasword" placeholder="Confirm Password" required [autocomplete]="false"
+                        [ngClass]="{ 'is-invalid': submitted && f?.['confirmPassword'].errors }" />
+                        <div *ngIf="submitted && f?.['confirmPassword'].errors" class="invalid-feedback">
+                            <div *ngIf="f?.['confirmPassword'].errors?.['required']">Confirm Password is required</div>
+                            <div *ngIf="f?.['confirmPassword'].errors?.['reactiveMustMatch']">Passwords must match</div>
+            
+                        </div>
+                    </div> <!-- form-group// -->  
+                                      
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block"> Create Account  </button>
+                        <button class="btn btn-secondary btn-block" type="reset" (click)="onReset()">Clear</button>
+                    </div> <!-- form-group// -->      
+                </form>
+                </article>
+                </div>
+             
+        </div>
+    </div>
+</div>
+
