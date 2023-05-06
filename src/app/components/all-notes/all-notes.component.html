@@ -1,7 +1,8 @@
 <app-home-nav></app-home-nav>
-
+<!-- <app-new-note></app-new-note> -->
 <div class="container-fluid containerWrapper">
-    <h4 >All Notes</h4>
+    <h4 >Favorite Notes</h4>
+    <p *ngIf="allNotes.length <= 0">We have nothing for you</p>
     <div class="row">
         <div class="col-md-8">
             <div *ngFor="let note of allNotes;let i=index " class="row" >
@@ -24,6 +25,7 @@
                   </div>
             </div>
         </div>
+        <!-- Detailed View -->
         <div *ngIf="isSeeDetails" class="col-md-4">
             <div class="card" >
                 <div class="card-body">
@@ -33,11 +35,60 @@
                            <p>Body: {{bodyDetail}}</p>
                            <p>Created On : {{createdOn|date: 'dd/MM/yyyy'}}</p>
                         </div>
+                        <button type="button" class="btn btn-info" (click)="editNoteHandler()">Edit</button>
+                        <button type="button" class="btn btn-danger" (click)="deleteNoteHandler()">Delete</button>
                     </div>
                    
                 </div>
               </div>
         </div>
+        <!-- Edit Mode -->
+        <div *ngIf="editFlag" class="col-md-4">
+        <form [formGroup]="editForm" name="loginForm" (ngSubmit)="onSubmit()" >
+                        
+                    
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-heading"></i> </span>
+                 </div>
+                 <input formControlName="title" value="titleDetail" name="title" type="text" class="form-control"
+                   placeholder="Title"   required  
+                 [ngClass]="{ 'is-invalid': submitted && f?.['title']?.errors }" />
+                 <div *ngIf="submitted && f?.['title'].errors" class="invalid-feedback">
+                     <div *ngIf="f?.['title']?.errors?.['required']">Title is required</div>
+                 </div>
+                </div> <!-- form-group// -->
+            
+            
+           
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"> <i class="fas fa-sticky-note"></i></span>
+                </div>
+                <textarea formControlName="body" name="body" type="text" class="form-control" 
+                id="body" placeholder="Note" required [autocomplete]="false" 
+                [ngClass]="{ 'is-invalid': submitted && f?.['body'].errors }" ></textarea>
+                                <div *ngIf="submitted && f?.['body'].errors" class="invalid-feedback">
+                                    <div *ngIf="f?.['body'].errors?.['required']">OOPS!!! forgot something</div>
+                                    
+                                </div>
+            </div> <!-- form-group// --> 
+
+            <div class="col-md-4">
+                <p><span>
+                    <i class="fa-regular fa-heart" *ngIf="!important" (click)="fav()"></i>
+                    <i class="fa-solid fa-heart" *ngIf="important"  (click)="fav()" ></i>
+                     </span></p>
+            </div>
+                                              
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block"> SAVE </button>
+            </div> <!-- form-group// -->      
+        </form>
+        </div>
+        
+
+
     
        
     </div>
