@@ -130,7 +130,7 @@ onSubmit() {
           //.pipe(first())
           .subscribe(
               data => {
-                  alert(data)
+                  alert("note saved succellfully")
                   window.location.reload();
                     //this.router.navigate(['/home']);
                   

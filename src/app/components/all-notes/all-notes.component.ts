@@ -119,8 +119,8 @@ onSubmit() {
 
   // stop here if form is invalid
   if (this.editForm.invalid) {
-    console.log("invalid form")
-    // this.noteForm.reset()
+   
+    
     return alert("Something was left out");
   }
  
@@ -130,7 +130,7 @@ onSubmit() {
           //.pipe(first())
           .subscribe(
               data => {
-                  alert(data)
+                  alert("Note saves successfully")
                   window.location.reload();
                     //this.router.navigate(['/home']);
                   
